@@ -866,6 +866,144 @@ footer p { font-size: 15px; line-height: 1.6; opacity: 0.8; }
 
   .toast.show { transform: translateY(0); }
 }
+
+/* ============ MAPPA EUROPA ============ */
+.map-section {
+  padding: 100px 0;
+  background: var(--bg-dark);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.map-section .hero-eyebrow { color: rgba(255,255,255,0.55); }
+.map-section .hero-eyebrow::before { background: var(--accent); }
+.map-section .section-title { color: var(--paper); }
+.map-section .section-intro { color: rgba(255,255,255,0.65); }
+
+.map-wrap {
+  position: relative;
+  margin-top: 24px;
+  background: #141414;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.map-stage { position: relative; padding: 12px; }
+.map-stage svg { display: block; width: 100%; height: auto; max-height: min(80vh, 760px); margin: 0 auto; }
+
+/* stati dei paesi */
+.map-stage svg path, .map-stage svg g { transition: filter 0.2s, opacity 0.2s; }
+.map-stage .st-context { fill: #232323 !important; stroke: #1a1a1a !important; stroke-width: 0.3 !important; pointer-events: none; }
+.map-stage .st-water { fill: #141414 !important; stroke: none !important; pointer-events: none; }
+.map-stage .st-disputed { display: none; }
+.map-stage .st-attivo   { fill: var(--green) !important; stroke: #0d2818 !important; cursor: pointer; }
+.map-stage .st-corsa    { fill: #1e5a96 !important; stroke: #102f4f !important; cursor: pointer; }
+.map-stage .st-no       { fill: var(--accent) !important; stroke: #5c0813 !important; cursor: pointer; }
+.map-stage .st-indeciso { fill: #555049 !important; stroke: #38342f !important; cursor: pointer; }
+.map-stage .st-italia   { fill: url(#hatch-italia) !important; stroke: var(--accent) !important; stroke-width: 1 !important; cursor: pointer; animation: italyPulse 2s ease-in-out infinite; }
+.map-stage .hover { filter: brightness(1.35); }
+@keyframes italyPulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.25; }
+}
+
+/* tooltip */
+.map-tip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 260px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 10;
+}
+.map-tip.show { opacity: 1; transform: translateY(0); }
+.map-tip .tip-flag { font-size: 18px; margin-right: 6px; }
+.map-tip .tip-name { font-family: var(--font-serif); font-weight: 800; font-size: 16px; }
+.map-tip .tip-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  margin: 6px 0;
+  color: #fff;
+}
+.map-tip .tip-note { color: var(--ink-soft); }
+
+/* legenda */
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.map-legend .dot {
+  display: inline-block;
+  width: 12px; height: 12px;
+  margin-right: 8px;
+  vertical-align: -1px;
+}
+.map-legend .num { color: var(--paper); font-weight: 700; }
+
+/* elenco paesi per stato */
+.map-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: none;
+}
+.map-group { background: #141414; padding: 24px; }
+.map-group:last-child { grid-column: 1 / -1; }
+.map-group-h {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  color: rgba(255,255,255,0.55);
+}
+.map-group-h .dot { display: inline-block; width: 10px; height: 10px; margin-right: 8px; }
+.map-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  margin: 0 6px 6px 0;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+}
+.map-chip small { color: rgba(255,255,255,0.45); margin-left: 6px; }
+
+.map-credit {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 16px;
+  letter-spacing: 0.04em;
+}
+.map-credit a { color: rgba(255,255,255,0.45); }
+
+@media (max-width: 720px) {
+  .map-section { padding: 64px 0; }
+  .map-legend { padding: 16px; gap: 10px 18px; font-size: 11px; }
+  .map-group { padding: 16px; }
+}
 </style>
 </head>
 <body>
@@ -875,6 +1013,7 @@ footer p { font-size: 15px; line-height: 1.6; opacity: 0.8; }
   <div class="container topbar-inner">
     <div class="logo"><span class="logo-dot"></span> FSD ITALIA</div>
     <nav class="topbar-nav">
+      <a href="#mappa">Mappa</a>
       <a href="#agisci">Agisci</a>
       <a href="#contesto">Contesto</a>
       <a href="#faq">FAQ</a>
@@ -948,6 +1087,38 @@ footer p { font-size: 15px; line-height: 1.6; opacity: 0.8; }
       <div class="status-label">Interrogazione Calenda</div>
       <div class="status-value">4-02971</div>
       <div class="status-sub">depositata 28 apr — senza risposta</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAPPA EUROPA ============ -->
+<section class="map-section" id="mappa">
+  <div class="container">
+    <div class="hero-eyebrow">→ La mappa</div>
+    <h2 class="section-title">
+      L'Europa si colora.<br>
+      <em>L'Italia è ancora grigia.</em>
+    </h2>
+    <p class="section-intro">
+      Lo stato del Tesla FSD Supervised paese per paese, verificato l'<time datetime="2026-06-11">11 giugno 2026</time>.
+      Passa il mouse (o tocca) un paese per i dettagli. I confini non rivendicano nulla: è una mappa, non un trattato.
+    </p>
+
+    <div class="map-wrap">
+      <div class="map-stage" id="mapStage" aria-label="Mappa d'Europa con lo stato di approvazione del Tesla FSD Supervised per paese">
+        <div class="map-tip" id="mapTip"></div>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+      <div class="map-groups" id="mapGroups"></div>
+    </div>
+    <div class="map-credit">
+      Fonti della mappa: <a href="https://electrek.co/2026/06/09/tesla-fsd-approved-denmark-fourth-european-country/" target="_blank" rel="noopener">Electrek (paesi in esame, 9 giu)</a> ·
+      <a href="https://etsc.eu/lithuania-and-estonia-authorise-tesla-fsd-with-belgium-and-greece-fast-tracking/" target="_blank" rel="noopener">ETSC (Grecia, 29 mag)</a> ·
+      <a href="https://www.transportstyrelsen.se/sv/om-oss/pressrum/nyhetsarkiv/2026/nya-forarstodssystem-och-pagaende-eu-process-for-tesla/" target="_blank" rel="noopener">Transportstyrelsen (Svezia, 11 mag)</a> ·
+      <a href="https://electrek.co/2026/05/05/tesla-fsd-eu-regulators-skepticism-speeding-approval/" target="_blank" rel="noopener">Reuters via Electrek (dubbi nordici, 5 mag)</a> ·
+      <a href="https://www.autozive.cz/tesla-autonomni-jizda-eu/" target="_blank" rel="noopener">AutoŽive (Cechia, 10 giu)</a> ·
+      <a href="https://www.gov.pl/web/infrastruktura/25-listopada7" target="_blank" rel="noopener">Ministero Infrastrutture PL (risposta a petizione, 1 mar)</a><br>
+      Mappa base: <a href="https://commons.wikimedia.org/wiki/File:Blank_map_of_Europe.svg" target="_blank" rel="noopener">maix / Wikimedia Commons</a> · CC BY-SA 3.0 · colori e dati a cura del sito
     </div>
   </div>
 </section>
@@ -1737,6 +1908,206 @@ function copyShareLink() {
     showToast('✓ Link copiato');
   });
 }
+
+// ============ MAPPA EUROPA ============
+// Stati: attivo (verde) · corsa (blu, in via di attivazione) · no (rosso) ·
+// indeciso (grigio) · italia (caso speciale, tratteggio)
+const MAP_STATES = {
+  attivo:   { label: 'FSD attivo',            color: '#007a33' },
+  corsa:    { label: 'In via di attivazione', color: '#1e5a96' },
+  no:       { label: 'Ha detto no',           color: '#c8102e' },
+  indeciso: { label: 'Nessuna posizione',     color: '#555049' },
+  italia:   { label: 'In attesa di risposta', color: '#8a8378' }
+};
+
+const MAP_NOTE_DEFAULT = 'Nessuna posizione pubblica. In attesa del voto UE (prossime finestre: 30 giugno e ottobre 2026).';
+
+const MAP_DATA = {
+  // verde — già attivo
+  nl: { n: 'Olanda',      f: '🇳🇱', s: 'attivo', d: '10 aprile 2026', note: 'Omologazione provvisoria RDW: UN R171 + Art. 39 Reg. UE 2018/858, dopo 18 mesi di test e 1,6 milioni di km.' },
+  lt: { n: 'Lituania',    f: '🇱🇹', s: 'attivo', d: '20 maggio 2026', note: 'Il Ministero dei Trasporti riconosce l’omologazione olandese. Tesla distribuisce il software lo stesso giorno.' },
+  ee: { n: 'Estonia',     f: '🇪🇪', s: 'attivo', d: '29 maggio 2026', note: 'L’autorità dei trasporti autorizza FSD riconoscendo l’approvazione olandese.' },
+  dk: { n: 'Danimarca',   f: '🇩🇰', s: 'attivo', d: '9 giugno 2026',  note: 'Approvazione provvisoria. Nota: a maggio i suoi regolatori erano tra gli scettici. Poi ha deciso.' },
+  be: { n: 'Belgio',      f: '🇧🇪', s: 'attivo', d: '10 giugno 2026', note: 'La ministra fiamminga De Ridder firma il via libera: quinto paese UE in due mesi.' },
+
+  // blu — passi concreti in corso
+  es: { n: 'Spagna',      f: '🇪🇸', s: 'corsa', d: 'test dal 2025',     note: 'La DGT ha autorizzato i test su strada pubblica: ~30 auto e 80.000 km da novembre 2025, zero incidenti dichiarati.' },
+  se: { n: 'Svezia',      f: '🇸🇪', s: 'corsa', d: 'test in corso',     note: 'Test su strada autorizzati e ampliati a più comuni. Ma i regolatori hanno messo a verbale dubbi seri (velocità, nome “Full Self-Driving”).' },
+  gr: { n: 'Grecia',      f: '🇬🇷', s: 'corsa', d: 'iter annunciato',   note: 'L’ETSC la descrive in “fast-tracking” verso il riconoscimento dell’omologazione olandese. Manca ancora l’atto formale.' },
+  ie: { n: 'Irlanda',     f: '🇮🇪', s: 'corsa', d: 'dossier aperto',    note: 'Tesla è in contatto con l’autorità di omologazione NSAI. Aperta la questione guida a sinistra.' },
+  de: { n: 'Germania',    f: '🇩🇪', s: 'corsa', d: 'dossier in esame',  note: 'Indicata tra i paesi che stanno esaminando la documentazione olandese. Nessuna conferma ufficiale del KBA, per ora.' },
+  fr: { n: 'Francia',     f: '🇫🇷', s: 'corsa', d: 'dossier in esame',  note: 'Indicata tra i paesi che esaminano il dossier. Nessuna posizione pubblica del governo.' },
+
+  // grigio — indecisi o in silenzio
+  no: { n: 'Norvegia',    f: '🇳🇴', s: 'indeciso', d: '', note: 'Il più grande mercato Tesla pro capite d’Europa. Chiede prove di sicurezza su neve e ghiaccio e aspetta il processo UE.' },
+  fi: { n: 'Finlandia',   f: '🇫🇮', s: 'indeciso', d: '', note: 'Dubbi messi a verbale a livello UE (strade ghiacciate, monitoraggio del guidatore). Nessuna decisione.' },
+  cz: { n: 'Cechia',      f: '🇨🇿', s: 'indeciso', d: '', note: 'Il Ministero (10 giugno): l’approvazione olandese non vale in tutta l’UE, aspettiamo Bruxelles. Almeno l’ha detto.' },
+  ch: { n: 'Svizzera',    f: '🇨🇭', s: 'indeciso', d: '', note: 'Fuori dall’UE: serve una base legale propria. Per ora si è mossa solo una petizione di cittadini.' },
+  gb: { n: 'Regno Unito', f: '🇬🇧', s: 'indeciso', d: '', note: 'Fa da sé (post-Brexit): quadro per veicoli autonomi atteso nel 2027. Per FSD nessuna data.' },
+  lv: { n: 'Lettonia',    f: '🇱🇻', s: 'indeciso', d: '', note: 'Nessuna posizione pubblica. Curioso: confina solo con paesi dove FSD è già attivo.' },
+  at: { n: 'Austria',     f: '🇦🇹', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+
+  // rosso — l'unico no messo per iscritto
+  pl: { n: 'Polonia',     f: '🇵🇱', s: 'no', d: '1 marzo 2026', note: 'Il Ministero delle Infrastrutture ha respinto una petizione per il riconoscimento di FSD (prima dell’ok olandese): nome fuorviante, mancano test su strade polacche. Sull’omologazione vera non si è ancora espresso.' },
+  pt: { n: 'Portogallo',  f: '🇵🇹', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  lu: { n: 'Lussemburgo', f: '🇱🇺', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  hu: { n: 'Ungheria',    f: '🇭🇺', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  ro: { n: 'Romania',     f: '🇷🇴', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  bg: { n: 'Bulgaria',    f: '🇧🇬', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  hr: { n: 'Croazia',     f: '🇭🇷', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  si: { n: 'Slovenia',    f: '🇸🇮', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  sk: { n: 'Slovacchia',  f: '🇸🇰', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+  mt: { n: 'Malta',       f: '🇲🇹', s: 'indeciso', d: '', note: 'Nessuna posizione pubblica. Con la guida a sinistra servirà comunque una valutazione a parte.' },
+  cy: { n: 'Cipro',       f: '🇨🇾', s: 'indeciso', d: '', note: 'Nessuna posizione pubblica. Con la guida a sinistra servirà comunque una valutazione a parte.' },
+  is: { n: 'Islanda',     f: '🇮🇸', s: 'indeciso', d: '', note: MAP_NOTE_DEFAULT },
+
+  // l'Italia, caso a parte
+  it: { n: 'Italia',      f: '🇮🇹', s: 'italia', d: '?', note: 'Decine di migliaia di Tesla con l’hardware adatto. Il MIT rimanda al processo UE e non risponde all’interrogazione Calenda. Né sì, né no.' }
+};
+
+const MAP_ALIASES = {}; // territori da colorare come il paese madre (es. fo → dk)
+
+function mapBuild(svgRoot) {
+  const stage = document.getElementById('mapStage');
+  const tip = document.getElementById('mapTip');
+
+  // pattern tratteggio per l'Italia
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  defs.innerHTML = '<pattern id="hatch-italia" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">' +
+    '<rect width="5" height="5" fill="#8a8378"/>' +
+    '<line x1="0" y1="0" x2="0" y2="5" stroke="#c8102e" stroke-width="2.2"/></pattern>';
+  svgRoot.insertBefore(defs, svgRoot.firstChild);
+
+  // colora i paesi (path per path: i gruppi come gb/ru/tr hanno sotto-path "gb-gbn" ecc.)
+  svgRoot.querySelectorAll('path[id]').forEach(el => {
+    if (el.id === 'large_masses_of_water') { el.classList.add('st-water'); return; }
+    if (/_/.test(el.id)) { el.classList.add('st-disputed'); return; } // overlay regioni contese
+    let code = el.id.split('-')[0];
+    code = MAP_ALIASES[code] || code;
+    const data = MAP_DATA[code];
+    if (data) {
+      el.classList.add(data.s === 'italia' ? 'st-italia' : 'st-' + data.s);
+      el.dataset.code = code;
+    } else {
+      el.classList.add('st-context');
+    }
+  });
+
+  // inquadra l'Europa che ci interessa (bbox dei paesi con dati + un margine)
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  Object.keys(MAP_DATA).forEach(code => {
+    const el = svgRoot.querySelector('#' + code);
+    if (!el) return;
+    const b = el.getBBox();
+    x0 = Math.min(x0, b.x); y0 = Math.min(y0, b.y);
+    x1 = Math.max(x1, b.x + b.width); y1 = Math.max(y1, b.y + b.height);
+  });
+  if (isFinite(x0)) {
+    const pad = 16;
+    svgRoot.setAttribute('viewBox',
+      `${Math.max(0, x0 - pad)} ${Math.max(0, y0 - pad)} ${Math.min(680, x1 - x0 + pad * 2)} ${Math.min(520, y1 - y0 + pad * 2)}`);
+  }
+
+  // tooltip
+  function showTip(code, evt) {
+    const d = MAP_DATA[code];
+    if (!d) return;
+    const st = MAP_STATES[d.s];
+    tip.innerHTML = `<span class="tip-flag">${d.f}</span><span class="tip-name">${d.n}</span><br>` +
+      `<span class="tip-status" style="background:${st.color}">${st.label}${d.d && d.d !== '?' ? ' · ' + d.d : ''}</span><br>` +
+      `<span class="tip-note">${d.note}</span>`;
+    const r = stage.getBoundingClientRect();
+    const tx = Math.min(evt.clientX - r.left + 14, r.width - 270);
+    const ty = Math.max(evt.clientY - r.top - 10, 8);
+    tip.style.left = Math.max(8, tx) + 'px';
+    tip.style.top = ty + 'px';
+    tip.classList.add('show');
+  }
+  function hideTip() { tip.classList.remove('show'); }
+
+  svgRoot.addEventListener('mousemove', e => {
+    const t = e.target.closest('[data-code]');
+    if (t) { t.classList.add('hover'); showTip(t.dataset.code, e); }
+    else hideTip();
+  });
+  svgRoot.addEventListener('mouseout', e => {
+    const t = e.target.closest('[data-code]');
+    if (t) t.classList.remove('hover');
+  });
+  svgRoot.addEventListener('mouseleave', hideTip);
+  svgRoot.addEventListener('click', e => {
+    const t = e.target.closest('[data-code]');
+    if (t) showTip(t.dataset.code, e); else hideTip();
+  });
+
+  mapRenderLegend();
+}
+
+function mapRenderLegend() {
+  const order = ['attivo', 'corsa', 'no', 'indeciso', 'italia'];
+  const byState = {};
+  Object.entries(MAP_DATA).forEach(([code, d]) => {
+    (byState[d.s] = byState[d.s] || []).push(d);
+  });
+
+  function dotStyleFor(s) {
+    return s === 'italia'
+      ? 'background:repeating-linear-gradient(45deg,#8a8378 0 2px,#c8102e 2px 4px)'
+      : 'background:' + MAP_STATES[s].color;
+  }
+
+  document.getElementById('mapLegend').innerHTML = order
+    .map(s => `<span><span class="dot" style="${dotStyleFor(s)}"></span>${MAP_STATES[s].label} <span class="num">· ${(byState[s] || []).length}</span></span>`)
+    .join('');
+
+  const groupTitles = {
+    attivo: 'Verde — già attivo',
+    corsa: 'Blu — in via di attivazione',
+    no: 'Rosso — ha detto no',
+    indeciso: 'Grigio — nessuna posizione',
+    italia: 'E poi c’è l’Italia'
+  };
+  document.getElementById('mapGroups').innerHTML = order
+    .map(s => {
+      const items = byState[s] || [];
+      let body;
+      if (s === 'no' && items.length === 0) {
+        body = '<p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.55)">Nessuno, finora. Nessun paese ha detto no: chi non ha approvato semplicemente <em>non ha risposto</em>. È esattamente quello che chiediamo all’Italia di non fare.</p>';
+      } else if (s === 'no') {
+        body = items
+          .map(d => `<span class="map-chip">${d.f} ${d.n}${d.d ? `<small>${d.d}</small>` : ''}</span>`)
+          .join('') +
+          '<p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.55);margin-top:10px">Un no a una <a href="https://www.gov.pl/web/infrastruktura/25-listopada7" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7)">petizione di cittadini</a>, arrivato prima dell’omologazione olandese. Ma è un no scritto e motivato: più di quanto abbia fatto l’Italia.</p>';
+      } else if (s === 'italia') {
+        body = '<span class="map-chip">🇮🇹 Italia<small>?</small></span>' +
+          '<p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.55);margin-top:10px">L’unico paese tratteggiato della mappa. Non chiediamo che diventi verde per forza: chiediamo che scelga un colore. <a href="#agisci" style="color:var(--accent)">Scrivilo al MIT →</a></p>';
+      } else {
+        body = items
+          .sort((a, b) => a.n.localeCompare(b.n, 'it'))
+          .map(d => `<span class="map-chip">${d.f} ${d.n}${d.d ? `<small>${d.d}</small>` : ''}</span>`)
+          .join('');
+      }
+      return `<div class="map-group"><div class="map-group-h"><span class="dot" style="${dotStyleFor(s)}"></span>${groupTitles[s]}</div>${body}</div>`;
+    }).join('');
+}
+
+async function initMap() {
+  const stage = document.getElementById('mapStage');
+  if (!stage) return;
+  try {
+    const res = await fetch('assets/europa-mappa.svg');
+    if (!res.ok) throw new Error('mappa non disponibile');
+    const txt = await res.text();
+    const doc = new DOMParser().parseFromString(txt, 'image/svg+xml');
+    const svg = doc.documentElement;
+    stage.insertBefore(svg, stage.firstChild);
+    mapBuild(svg);
+  } catch {
+    stage.innerHTML = '<p style="padding:32px;font-family:var(--font-mono);font-size:13px;color:rgba(255,255,255,0.5)">La mappa non si carica. I dati paese per paese sono comunque qui sotto.</p>';
+    mapRenderLegend();
+  }
+}
+initMap();
 
 function shareTo(platform) {
   bumpCounter();
