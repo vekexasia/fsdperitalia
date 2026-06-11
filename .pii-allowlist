@@ -23,3 +23,59 @@
 ^raimondo_f@camera\.it$
 ^casu_andrea@camera\.it$
 ^iaria_a@camera\.it$
+# Public dates and public source URLs for FSD approval status updates.
+^11 giugno 2026$
+^9 giugno 2026$
+^10 giugno 2026$
+^https://teslanorth\.com/2026/05/29/tesla-fsd-supervised-approved-in-estonia-as-europe-rollout-gains-pace/$
+^https://electrek\.co/2026/06/09/tesla-fsd-approved-denmark-fourth-european-country/$
+^https://evxl\.co/2026/06/10/tesla-fsd-belgium-denmark-approval/$
+(?i)teslanorth\.com/2026/05/29/tesla-fsd-supervised-approved-in-estonia-as-europe-rollout-gains-pace
+(?i)electrek\.co/2026/06/09/tesla-fsd-approved-denmark-fourth-european-country
+(?i)evxl\.co/2026/06/10/tesla-fsd-belgium-denmark-approval
+# Public institutional / official names referenced in sourced approval chronology.
+(?i)^Rijksdienst voor het Wegverkeer$
+(?i)^Lithuanian Transport Safety Administration$
+(?i)^Estonian Transport Administration$
+(?i)^Annick De Ridder$
+^2026-06-11$
+^2026-06-09$
+^2026-06-10$
+^10 aprile 2026$
+^18-20 maggio 2026$
+^20 maggio 2026$
+^29 maggio 2026$
+^9-10 GIU 2026$
+(?i)^Olanda$
+(?i)^Lituania$
+(?i)^Estonia$
+(?i)^Danimarca$
+(?i)^Belgio$
+(?i)^RDW$
+(?i)^LTSA$
+(?i)^Taminskas$
+(?i)^Annick$
+(?i)^De Ridder$
+(?i)Annick De Ridder
+^https://www\.electrive\.com/2026/05/21/tesla-gets-green-light-for-fsd-supervised-in-lithuania/$
+(?i)electrive\.com/2026/05/21/tesla-gets-green-light-for-fsd-supervised-in-lithuania
+(?i)^Ministero dei Trasporti$
+(?i)^autorità stradale danese$
+(?i)^Electrek$
+(?i)^EVXL$
+(?i)^Danimarca su Electrek$
+(?i)^Belgio su EVXL$
+(?i)^Lithuanian$
+(?i)^Transport Safety Administration$
+(?i)Lithuanian Transport Safety Administration
+(?i)^Lituania - 18-20 maggio 2026$
+(?i)^Danimarca - 9 giugno 2026$
+(?i)Lituania - 18-20 maggio 2026
+(?i)Danimarca - 9 giugno 2026
+(?i)^l'autorità stradale danese$
+(?i)^l'Agenzia LTSA$
+(?i)^Agenzia LTSA$
+(?i)^autorità lituane$
+(?i)^le autorità lituane$
+(?i)^La Danimarca$
+(?i)^la Danimarca$
