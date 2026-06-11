@@ -79,3 +79,23 @@
 (?i)^le autorità lituane$
 (?i)^La Danimarca$
 (?i)^la Danimarca$
+# Public source URLs and attribution for the Europe FSD status map (June 2026).
+^https://etsc\.eu/lithuania-and-estonia-authorise-tesla-fsd-with-belgium-and-greece-fast-tracking/$
+(?i)etsc\.eu/lithuania-and-estonia-authorise-tesla-fsd-with-belgium-and-greece-fast-tracking
+^https://www\.transportstyrelsen\.se/sv/om-oss/pressrum/nyhetsarkiv/2026/nya-forarstodssystem-och-pagaende-eu-process-for-tesla/$
+(?i)transportstyrelsen\.se/sv/om-oss/pressrum/nyhetsarkiv/2026/nya-forarstodssystem-och-pagaende-eu-process-for-tesla
+^https://electrek\.co/2026/05/05/tesla-fsd-eu-regulators-skepticism-speeding-approval/$
+(?i)electrek\.co/2026/05/05/tesla-fsd-eu-regulators-skepticism-speeding-approval
+^https://www\.autozive\.cz/tesla-autonomni-jizda-eu/$
+(?i)autozive\.cz/tesla-autonomni-jizda-eu
+^https://www\.gov\.pl/web/infrastruktura/25-listopada7$
+(?i)gov\.pl/web/infrastruktura/25-listopada7
+^https://commons\.wikimedia\.org/wiki/File:Blank_map_of_Europe\.svg$
+(?i)commons\.wikimedia\.org/wiki/File:Blank_map_of_Europe\.svg
+# Wikimedia Commons author of the public-domain-licensed base map (CC BY-SA 3.0 attribution).
+(?i)^maix$
+(?i)maix / Wikimedia Commons
+# Public dates from sourced FSD status updates shown on the map.
+^1 marzo 2026$
+^test dal 2025$
+^novembre 2025$
